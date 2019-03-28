@@ -136,7 +136,8 @@ export function param2Obj(url) {
       decodeURIComponent(search)
         .replace(/"/g, '\\"')
         .replace(/&/g, '","')
-        .replace(/=/g, '":"') +
+        .replace(/=/g, '":"')
+        .replace(/\+/g, ' ') +
       '"}'
   )
 }
@@ -273,7 +274,7 @@ export function debounce(func, wait, immediate) {
  */
 export function deepClone(source) {
   if (!source && typeof source !== 'object') {
-    throw new Error('error arguments', 'shallowClone')
+    throw new Error('error arguments', 'deepClone')
   }
   const targetObj = source.constructor === Array ? [] : {}
   Object.keys(source).forEach(keys => {
